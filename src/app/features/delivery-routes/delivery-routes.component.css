@@ -1,59 +1,81 @@
-/* component.component.css */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* Colunas flexíveis */
-  gap: 1rem; /* Espaço entre os cards */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
   padding: 1rem;
-}
-
-/* Manter estilos do widget */
-:host ::ng-deep .po-widget {
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  height: 100%; /* Garante altura igual para cards na mesma linha */
-}
-
-:host ::ng-deep .po-widget .po-widget-body {
-  min-height: 100px; /* Ajuste conforme necessidade */
-}
-
-.cards-container {
-  max-width: auto; /* Centraliza em telas muito grandes */
   margin: 0 auto;
 }
 
+:host ::ng-deep .po-widget {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  max-height: none; /* <<< Remova a limitação */
+}
 
-/* Container dos botões */
+
+:host ::ng-deep .po-widget.expanded {
+  max-height: 1000px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
 :host .actions {
   display: flex;
-  gap: 0.5rem; /* Espaço reduzido entre botões */
+  gap: 0.5rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-/* Adicione ao seu arquivo CSS */
 :host ::ng-deep .actions po-button button.po-button {
-  /* Tamanho */
-  min-width: 50px !important;
+  min-width: 80px !important;
   padding: 4px 12px !important;
   height: 32px !important;
-
-  /* Texto */
   font-size: 0.85rem !important;
   line-height: 1.2 !important;
-
+  background-color: var(--color-brand-02-base) !important; 
+  border-color: var(--color-primary-dark-20) !important;
 }
 
-/* Hover State */
 :host ::ng-deep .actions po-button button.po-button:hover {
-  background-color: #753399;
+  background-color: var(--color-primary-dark-20) !important;
   transform: scale(0.98);
 }
 
-/* Versão Compacta para Mobile */
 @media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
   :host ::ng-deep .actions po-button button.po-button {
     min-width: 70px !important;
     padding: 2px 8px !important;
   }
+}
+.card-content {
+  cursor: pointer;
+  padding: 16px;
+}
+
+.expanded .info {
+  animation: expandFade 0.3s ease;
+}
+
+@keyframes expandFade {
+  from { opacity: 0; transform: scaleY(0.95); }
+  to { opacity: 1; transform: scaleY(1); }
 }
