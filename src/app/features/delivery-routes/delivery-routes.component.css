@@ -1,0 +1,59 @@
+/* component.component.css */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* Colunas flexíveis */
+  gap: 1rem; /* Espaço entre os cards */
+  padding: 1rem;
+}
+
+/* Manter estilos do widget */
+:host ::ng-deep .po-widget {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  height: 100%; /* Garante altura igual para cards na mesma linha */
+}
+
+:host ::ng-deep .po-widget .po-widget-body {
+  min-height: 100px; /* Ajuste conforme necessidade */
+}
+
+.cards-container {
+  max-width: auto; /* Centraliza em telas muito grandes */
+  margin: 0 auto;
+}
+
+
+/* Container dos botões */
+:host .actions {
+  display: flex;
+  gap: 0.5rem; /* Espaço reduzido entre botões */
+  margin-top: 1rem;
+}
+
+/* Adicione ao seu arquivo CSS */
+:host ::ng-deep .actions po-button button.po-button {
+  /* Tamanho */
+  min-width: 50px !important;
+  padding: 4px 12px !important;
+  height: 32px !important;
+
+  /* Texto */
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+
+}
+
+/* Hover State */
+:host ::ng-deep .actions po-button button.po-button:hover {
+  background-color: #753399;
+  transform: scale(0.98);
+}
+
+/* Versão Compacta para Mobile */
+@media (max-width: 480px) {
+  :host ::ng-deep .actions po-button button.po-button {
+    min-width: 70px !important;
+    padding: 2px 8px !important;
+  }
+}

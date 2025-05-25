@@ -1,0 +1,51 @@
+<po-page-default p-title="Rotas de entrega" [p-actions]="actions">
+
+  <div class="cards-container">
+
+    <po-widget *ngFor="let item of items" p-title="Informações">
+      <div class="card-content">
+
+        <po-tag 
+          [p-label]="item.status === 'entregue' ? 'Entregue' : 'Pendente'"
+          [p-type]="item.status === 'entregue' ? PoTagType.Success : PoTagType.Info">
+        </po-tag>
+
+        <div class="info">
+          <p><strong>Nome:</strong> {{ item.Nome }}</p>
+          <p><strong>Motorista:</strong> {{ item.Motorista }}</p>
+          <p><strong>Data:</strong> {{ item.Data }}</p>
+          <p><strong>Hora:</strong> {{ item.Hora }}</p>
+          <p><strong>status:</strong> {{ item.status }}</p>
+          <p><strong>Veiculo:</strong> {{ item.Veiculo }}</p>
+          <p><strong>Placa:</strong> {{ item.Placa }}</p>
+          <p><strong>UF:</strong> {{ item.UF }}</p>
+          <p><strong>Cidade:</strong> {{ item.Cidade }}</p>
+          <p><strong>Bairro:</strong> {{ item.Bairro }}</p>
+          <p><strong>Nº:</strong> {{ item.N }}</p>
+          <p><strong>Rua:</strong> {{ item.Rua }}</p>
+          <p><strong>Cep:</strong> {{ item.Cep }}</p>
+          <p><strong>Codigo:</strong> {{ item.Codigo }}</p>
+          <div class="actions">
+            <po-button p-label="Editar" type="primary"></po-button>
+            <po-button p-label="Excluir" type="danger"></po-button>
+          </div>
+        </div>
+
+      </div>
+    </po-widget>
+
+  </div> 
+</po-page-default>
+
+<po-modal 
+  #routeModal 
+  p-title="Incluir nova rota"
+  [p-primary-action]="{ label: 'Salvar', action: saveRoute }"
+  [p-secondary-action]="{ label: 'Cancelar', action: cancel }">
+  
+  <po-dynamic-form 
+    [p-fields]="formFields" 
+    [(ngModel)]="formData">
+  </po-dynamic-form>
+
+</po-modal>

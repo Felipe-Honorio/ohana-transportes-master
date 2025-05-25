@@ -1,0 +1,22 @@
+<div class="po-wrapper">
+    <po-toolbar p-title="Ohana"></po-toolbar>
+    <po-menu 
+      [p-menus]="menus">
+      <div *p-menu-header-template class="po-font-title sample-menu-header-text-color">
+        <div class="po-p-2">
+            <div class="po-row">
+                <img class="logo-menu" 
+                  src="./../../../assets/img/logo-menu.png"
+                  alt="Ohana transportes">
+            </div>
+            <div class="po-row po-pt-2">
+                Bem vindo,
+            </div>
+            <div class="po-row">
+                <b> {{'Usuario'}} </b>
+            </div>
+        </div>
+      </div>
+    </po-menu>
+    <router-outlet></router-outlet>
+</div>
