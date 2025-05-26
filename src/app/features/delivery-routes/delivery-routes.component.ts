@@ -33,7 +33,19 @@ export class DeliveryRoutesComponent {
   ];
 
   columns: Array<PoTableColumn> = this.getColumns();
-  items: Array<any> = this.getItems();
+  items: Array<any> = this.getItems().map(item => ({ 
+    ...item,
+    expandido: false // Adiciona estado de expansão
+  }));
+
+  // Nova função para alternar expansão
+  toggleExpand(clickedItem: any): void {
+    console.log('Clicou no item:', clickedItem);
+    this.items = this.items.map(item => ({
+      ...item,
+      expandido: item === clickedItem ? !item.expandido : false
+    }));
+  }
 
   formFields: Array<PoDynamicFormField> = [
     { property: 'cep', label: 'CEP', required: true },
