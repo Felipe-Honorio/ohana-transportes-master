@@ -1,33 +1,29 @@
 <po-page-default p-title="Rotas de entrega" [p-actions]="actions">
   <div class="cards-container">
-   <po-widget *ngFor="let item of items" p-title="{{ item.Nome }}" [ngClass]="{ 'expanded': item.expandido }">
-  <div class="card-content">
-    <po-tag 
-      [p-label]="item.status === 'entregue' ? 'Entregue' : 'Pendente'"
-      [p-type]="item.status === 'entregue' ? PoTagType.Success : PoTagType.Warning">
-    </po-tag>
+    <po-widget *ngFor="let item of items" p-title="{{ item.Nome }}" [ngClass]="{ 'expanded': item.expandido }">
+      <div class="card-content">
+        <po-tag [p-label]="item.status === 'entregue' ? 'Entregue' : 'Pendente'"
+          [p-type]="item.status === 'entregue' ? PoTagType.Success : PoTagType.Danger">
+        </po-tag>
+        <!-- conteúdo visivel antes da expansão -->
+        <p><strong>Motorista:</strong> {{ item.Motorista }}</p>
+        <p><strong>Código:</strong> {{ item.Codigo }}</p>
 
-    <p><strong>Motorista:</strong> {{ item.Motorista }}</p>
-    <p><strong>Código:</strong> {{ item.Codigo }}</p>
-
-    <po-button 
-  [p-label]="item.expandido ? 'Ocultar detalhes' : 'Exibir detalhes'" 
-  (p-click)="toggleExpand(item)">
-</po-button>
+        <po-button [p-label]="item.expandido ? 'Ocultar detalhes' : 'Exibir detalhes'" (p-click)="toggleExpand(item)">
+        </po-button>
 
 
-    <!-- conteúdo expandido -->
-    <div *ngIf="item.expandido" class="detalhes">
-      <p><strong>Placa:</strong> {{ item.Placa }}</p>
-      <p><strong>Veículo:</strong> {{ item.Veiculo }}</p>
-      <p><strong>Data:</strong> {{ item.Data }} - {{ item.Hora }}</p>
-      <p><strong>Endereço:</strong> {{ item.Rua }}, Nº {{ item.N }}, {{ item.Bairro }} - {{ item.Cidade }}/{{ item.UF }}</p>
-      <p><strong>CEP:</strong> {{ item.Cep }}</p>
-    </div>
+        <!-- conteúdo visel apos expandido -->
+        <div *ngIf="item.expandido" class="detalhes">
+          <p><strong>Placa:</strong> {{ item.Placa }}</p>
+          <p><strong>Veículo:</strong> {{ item.Veiculo }}</p>
+          <p><strong>Data:</strong> {{ item.Data }} - {{ item.Hora }}</p>
+          <p><strong>CEP:</strong> {{ item.Cep }}</p>
+          <p><strong>Endereço:</strong> {{ item.Rua }}, Nº {{ item.N }}, {{ item.Bairro }} - {{ item.Cidade }}/{{
+            item.UF }}</p>
+        </div>
+      </div>
+    </po-widget>
+
   </div>
-</po-widget>
-
-  </div> 
 </po-page-default>
-
-
